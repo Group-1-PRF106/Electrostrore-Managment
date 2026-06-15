@@ -1,0 +1,4 @@
+# Ignore object files, executables, and Dev-C++ specific layout files
+*.o
+*.exe
+*.layout
