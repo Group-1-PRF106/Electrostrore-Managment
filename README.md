@@ -1,7 +1,9 @@
 # ElectroStore Manager 🛒⚡
 ### E-Commerce Electronics & Bundle Management System
 *Báo cáo Dự án Học phần: PRF192 - Programming Fundamentals*
+
 *Trường Đại học FPT - Lớp SE2101*
+
 *Thành phố Hồ Chí Minh, Tháng 05 - 2026*
 
 ---
