@@ -1,0 +1,49 @@
+# Project: Electrostore Manager
+# Makefile created by Embarcadero Dev-C++ 6.3
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = main.o product.o data.o system.o .o addBundle().o addCustomer().o addItem().o addOrder().o
+LINKOBJ  = main.o product.o data.o system.o .o addBundle().o addCustomer().o addItem().o addOrder().o
+LIBS     = -L"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib" -L"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/lib" -static-libgcc -g3
+INCS     = -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include"
+CXXINCS  = -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++"
+BIN      = Managment.exe
+CXXFLAGS = $(CXXINCS) -g3
+CFLAGS   = $(INCS) -g3
+DEL      = C:\Program Files (x86)\Embarcadero\Dev-Cpp\DevCpp.exe INTERNAL_DEL
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${DEL} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.c
+	$(CC) -c main.c -o main.o $(CFLAGS)
+
+product.o: product.c
+	$(CC) -c product.c -o product.o $(CFLAGS)
+
+data.o: data.c
+	$(CC) -c data.c -o data.o $(CFLAGS)
+
+system.o: system.c
+	$(CC) -c system.c -o system.o $(CFLAGS)
+
+addBundle().o: addBundle().c
+	$(CC) -c addBundle().c -o addBundle().o $(CFLAGS)
+
+addCustomer().o: addCustomer().c
+	$(CC) -c addCustomer().c -o addCustomer().o $(CFLAGS)
+
+addItem().o: addItem().c
+	$(CC) -c addItem().c -o addItem().o $(CFLAGS)
+
+addOrder().o: addOrder().c
+	$(CC) -c addOrder().c -o addOrder().o $(CFLAGS)
