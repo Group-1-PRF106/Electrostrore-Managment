@@ -7,6 +7,7 @@ int login(void);        // login() phai tra ve int (1: Admin, 2: User, 0: Fail)
 void admin_menu(void);
 void user_menu(void);
 
+
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 int main(void) {
