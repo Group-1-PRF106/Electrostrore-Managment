@@ -2,7 +2,7 @@
 
 void addBundle(Bundle bundles[],
                int *bundleCount,
-               Item items[],
+               struct item items[],
                int itemCount)
 {
     Bundle newBundle;
@@ -52,8 +52,7 @@ void addBundle(Bundle bundles[],
 
         for(j = 0; j < itemCount; j++)
         {
-            if(strcmp(items[j].itemID,
-                      newBundle.itemIDs[i]) == 0)
+            if(items[j].productid == atoi(newBundle.itemIDs[i]))
             {
                 found = 1;
             }

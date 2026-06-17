@@ -4,7 +4,7 @@ void addOrder(Order orders[],
               int *orderCount,
               Customer customers[],
               int customerCount,
-              Item items[],
+              struct item items[],
               int itemCount,
               Bundle bundles[],
               int bundleCount)
@@ -80,8 +80,7 @@ void addOrder(Order orders[],
 
         for(j = 0; j < itemCount; j++)
         {
-            if(strcmp(items[j].itemID,
-                      newOrder.itemIDs[i]) == 0)
+            if(items[j].productid == atoi(newOrder.itemIDs[i]))
             {
                 itemIndex = j;
             }

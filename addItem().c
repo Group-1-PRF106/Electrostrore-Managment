@@ -1,18 +1,17 @@
 #include "add_functions.h"
 
-void addItem(Item items[], int *n)
+void addItem(struct item items[], int *n)
 {
-    Item newItem;
+    struct item newItem;
     int i;
     int found = 0;
 
     printf("Input Item ID: ");
-    scanf("%s", newItem.itemID);
+    scanf("%d", &newItem.productid);
 
     for(i = 0; i < *n; i++)
     {
-        if(strcmp(items[i].itemID,
-                  newItem.itemID) == 0)
+        if(items[i].productid == newItem.productid)
         {
             found = 1;
         }
@@ -25,10 +24,13 @@ void addItem(Item items[], int *n)
     else
     {
         printf("Input Name: ");
-        scanf(" %[^\n]", newItem.name);
+        scanf(" %39s", newItem.productname);
+
+        printf("Input Company: ");
+        scanf("%39s", newItem.productcomp);
 
         printf("Input Price: ");
-        scanf("%f", &newItem.price);
+        scanf("%d", &newItem.price);
 
         if(newItem.price <= 0)
         {
@@ -37,9 +39,9 @@ void addItem(Item items[], int *n)
         else
         {
             printf("Input Quantity: ");
-            scanf("%d", &newItem.quantity);
+            scanf("%d", &newItem.Qnt);
 
-            if(newItem.quantity <= 0)
+            if(newItem.Qnt <= 0)
             {
                 printf("ERROR: Quantity must be > 0\n");
             }

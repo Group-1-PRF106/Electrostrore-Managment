@@ -1,7 +1,3 @@
-#ifndef DECLARE_FUNCTION
-#define DECLARE_FUNCTION
+ #include "declareFunction.h"
 
-void updateProduct(void);
-void delelteProduct(void);
-
-#endif
+ /* This source file intentionally left minimal; header defines prototypes. */

@@ -4,16 +4,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include "product.h"  // Reuse struct item from product.h
 
 // --- ĐỊNH NGHĨA CÁC CẤU TRÚC DỮ LIỆU CỦA NHÁNH B ---
 
-// Struct Item (Dùng cho addItem.c và hỗ trợ các hàm bundle/order)
-typedef struct {
-    char itemID[20];
-    char name[50];
-    float price;
-    int quantity;
-} Item;
+// Reuse struct item from product.h (instead of Item typedef)
+// struct item { productname, productcomp, price, productid, Qnt }
 
 // Struct Customer (Đã sửa từ int id sang chuỗi ký tự theo addCustomer.c)
 typedef struct {
@@ -49,12 +45,12 @@ typedef struct {
 
 // --- KHAI BÁO CÁC PROTOTYPE HÀM (INTERFACE CHO ADMIN GỌI) ---
 
-void addItem(Item items[], int *n);
+void addItem(struct item items[], int *n);
 
 void addCustomer(Customer customers[], int *n);
 
-void addBundle(Bundle bundles[], int *bundleCount, Item items[], int itemCount);
+void addBundle(Bundle bundles[], int *bundleCount, struct item items[], int itemCount);
 
-void addOrder(Order orders[], int *orderCount, Customer customers[], int customerCount, Item items[], int itemCount, Bundle bundles[], int bundleCount);
+void addOrder(Order orders[], int *orderCount, Customer customers[], int customerCount, struct item items[], int itemCount, Bundle bundles[], int bundleCount);
 
 #endif

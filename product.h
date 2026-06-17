@@ -20,17 +20,16 @@ struct item{
 //Bien toan cuc chua du lieu
 extern struct item productList[MAX_PRODUCTS];
 extern int productCount;
-// Khai baso prototype các hàm để main.c gọi được
+// Khai bao prototype các hàm de main.c goi duoc
 void add_item(void);
 void edit_item(void);
-void deleteproduct(void);
+void delete_product(void);
 void search_item(void);
-void read_item();
-void read_item();
-void displayAllProduct();
-void searchProdcutByID(int id);
-void searchProductByName(char* name);
-void sortProductsByPrice(int asscending);
+void read_item(void);
+void displayAllProduct(void);
+void searchProductByID(int id);
+void searchProductByName(const char* name);
+void sortProductsByPrice(int ascending);
 
 #endif
 
