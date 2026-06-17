@@ -24,4 +24,8 @@ void searchProductByName(const char *keyword) {
         printf("Khong tim thay san pham nao!\n");
     }
     printf("------------------------------------------------------------------------------------\n");
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 8b2e0fc3a8ada0779f5970a2b6ec7c776c311b46

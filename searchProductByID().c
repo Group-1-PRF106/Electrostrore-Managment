@@ -23,4 +23,8 @@ void searchProductByID(int searchID) {
         printf("Khong tim thay san pham co ID %d!\n", searchID);
     }
     printf("--------------------------------------------------------------\n");
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 8b2e0fc3a8ada0779f5970a2b6ec7c776c311b46

@@ -1,0 +1,49 @@
+# Project: Electrostore Manager
+# Makefile created by Embarcadero Dev-C++ 6.3
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = main.o product.o data.o system.o .o displayAllProduct().o searchProductByID().o searchProductByName().o sortProductsByPrice().o
+LINKOBJ  = main.o product.o data.o system.o .o displayAllProduct().o searchProductByID().o searchProductByName().o sortProductsByPrice().o
+LIBS     = -L"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib" -L"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/lib" -static-libgcc -g3
+INCS     = -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include"
+CXXINCS  = -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++"
+BIN      = Managment.exe
+CXXFLAGS = $(CXXINCS) -g3
+CFLAGS   = $(INCS) -g3
+DEL      = C:\Program Files (x86)\Embarcadero\Dev-Cpp\DevCpp.exe INTERNAL_DEL
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${DEL} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.c
+	$(CC) -c main.c -o main.o $(CFLAGS)
+
+product.o: product.c
+	$(CC) -c product.c -o product.o $(CFLAGS)
+
+data.o: data.c
+	$(CC) -c data.c -o data.o $(CFLAGS)
+
+system.o: system.c
+	$(CC) -c system.c -o system.o $(CFLAGS)
+
+displayAllProduct().o: displayAllProduct().c
+	$(CC) -c displayAllProduct().c -o displayAllProduct().o $(CFLAGS)
+
+searchProductByID().o: searchProductByID().c
+	$(CC) -c searchProductByID().c -o searchProductByID().o $(CFLAGS)
+
+searchProductByName().o: searchProductByName().c
+	$(CC) -c searchProductByName().c -o searchProductByName().o $(CFLAGS)
+
+sortProductsByPrice().o: sortProductsByPrice().c
+	$(CC) -c sortProductsByPrice().c -o sortProductsByPrice().o $(CFLAGS)

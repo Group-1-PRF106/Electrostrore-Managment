@@ -17,6 +17,7 @@ void displayAllProduct(int showPrice) {
                    productList[i].productcomp,
                    productList[i].price,
                    productList[i].Qnt);
+<<<<<<< HEAD
         }
     } else {
         printf("\n%-5s %-30s %-20s %-10s\n", "ID", "TEN SAN PHAM", "HANG SAN XUAT", "SO LUONG");
@@ -31,3 +32,19 @@ void displayAllProduct(int showPrice) {
     }
     printf("------------------------------------------------------------------------------------\n");
 }
+=======
+        }
+    } else {
+        printf("\n%-5s %-30s %-20s %-10s\n", "ID", "TEN SAN PHAM", "HANG SAN XUAT", "SO LUONG");
+        printf("----------------------------------------------------------------------\n");
+        for(int i = 0; i < productCount; i++) {
+            printf("%-5d %-30s %-20s %-10d\n",
+                   productList[i].productid,
+                   productList[i].productname,
+                   productList[i].productcomp,
+                   productList[i].Qnt);
+        }
+    }
+    printf("------------------------------------------------------------------------------------\n");
+}
+>>>>>>> 8b2e0fc3a8ada0779f5970a2b6ec7c776c311b46

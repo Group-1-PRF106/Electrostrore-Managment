@@ -24,4 +24,8 @@ void sortProductsByPrice(int ascending) {
     } else {
         printf("\nDa sap xep danh sach san pham theo gia GIAM DAN!\n");
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 8b2e0fc3a8ada0779f5970a2b6ec7c776c311b46
