@@ -130,7 +130,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit9]
-FileName=C:\Users\nguye\OneDrive\Desktop\project2\displayAllProduct2().c
+FileName=displayAllProduct().c
 Folder=
 Compile=1
 Link=1
@@ -140,7 +140,7 @@ BuildCmd=
 CompileCpp=0
 
 [Unit10]
-FileName=C:\Users\nguye\OneDrive\Desktop\project2\displayAllProduct2().h
+FileName=displayAllProduct().h
 CompileCpp=0
 Folder=
 Compile=1
@@ -150,7 +150,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit11]
-FileName=C:\Users\nguye\OneDrive\Desktop\project2\search.h
+FileName=search.h
 CompileCpp=0
 Folder=
 Compile=1
@@ -160,7 +160,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit12]
-FileName=C:\Users\nguye\OneDrive\Desktop\project2\searchProductByID2().c
+FileName=searchProductByID().c
 CompileCpp=0
 Folder=
 Compile=1
@@ -170,7 +170,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit13]
-FileName=C:\Users\nguye\OneDrive\Desktop\project2\searchProductByID2().h
+FileName=searchProductByID().h
 CompileCpp=0
 Folder=
 Compile=1
@@ -180,7 +180,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit14]
-FileName=C:\Users\nguye\OneDrive\Desktop\project2\searchProductByName2().c
+FileName=searchProductByName().c
 CompileCpp=0
 Folder=
 Compile=1
@@ -190,7 +190,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit15]
-FileName=C:\Users\nguye\OneDrive\Desktop\project2\searchProductByName2().h
+FileName=searchProductByName().h
 CompileCpp=0
 Folder=
 Compile=1
@@ -200,7 +200,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit16]
-FileName=C:\Users\nguye\OneDrive\Desktop\project2\sortProductsByPrice2().c
+FileName=sortProductsByPrice().c
 CompileCpp=0
 Folder=
 Compile=1
@@ -210,7 +210,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit17]
-FileName=C:\Users\nguye\OneDrive\Desktop\project2\sortProductsByPrice2().h
+FileName=sortProductsByPrice().h
 CompileCpp=0
 Folder=
 Compile=1
