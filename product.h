@@ -26,10 +26,6 @@ void edit_item(void);
 void delete_product(void);
 void search_item(void);
 void read_item(void);
-void displayAllProduct(void);
-void searchProductByID(int id);
-void searchProductByName(const char* name);
-void sortProductsByPrice(int ascending);
 
 #endif
 
