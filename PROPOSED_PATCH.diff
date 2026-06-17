@@ -1,0 +1,187 @@
+PROPOSED PATCHES (review only)
+
+Patch 1: Fixes in system.c
+--- system.c (original)
+@@
+void safe_gets(char *buffer, int size){
+	if (fgets(buffer, size, stdin)!=NULL){
+		size_t len = strlen(buffer);
+		if (len>0 && buffer[len-1]=='\n');
+		{
+			buffer[len=1]='\0';
+		}
+	}
+}
+@@
+int checkLoginFromFile(char *uname, char *pword){
+	FILE *fp = fopen ("accounts.txt","r");
+	if(fp=NULL){
+		printf("[System] Loi: Khong tim thay file accounts.txt!\n");
+		return 0;
+	}
+	char fileUser[20],filePass[20];
+	int role =0;
+	// Doc tung dong trong file
+	while (fscanf(fp,"%s %s %s",fileUser, filePass, &role)!=EOF){
+		PROPOSED PATCHES (review only)
+
+		Below are concise, ready-to-review patches for the main issues discussed. They are presented as unified diffs you can apply manually or with `patch`/git.
+
+		*** Begin Patch for system.c ***
+		--- a/system.c
+		+++ b/system.c
+		@@
+		 void safe_gets(char *buffer, int size){
+		-    if (fgets(buffer, size, stdin)!=NULL){
+		-        size_t len = strlen(buffer);
+		-        if (len>0 && buffer[len-1]=='\n');
+		-        {
+		-            buffer[len=1]='\0';
+		-        }
+		-    }
+		-}
+		+    if (fgets(buffer, size, stdin) != NULL) {
+		+        size_t len = strlen(buffer);
+		+        if (len > 0 && buffer[len-1] == '\n')
+		+            buffer[len-1] = '\0';
+		+    }
+		 }
+		@@
+		 int checkLoginFromFile(char *uname, char *pword){
+		-    FILE *fp = fopen ("accounts.txt","r");
+		-    if(fp=NULL){
+		-        printf("[System] Loi: Khong tim thay file accounts.txt!\n");
+		-        return 0;
+		-    }
+		-    char fileUser[20],filePass[20];
+		-    int role =0;
+		-    // Doc tung dong trong file
+		-    while (fscanf(fp,"%s %s %s",fileUser, filePass, &role)!=EOF){
+		-        if(strcmp(uname,fileUser)==0 && strcmp(pword,filePass)==0){
+		-            fclose(fp);
+		-            return role;
+		-        }
+		-    }
+		-    fclose(fp);
+		-    return 0;
+		-}
+		+    FILE *fp = fopen("accounts.txt", "r");
+		+    if (fp == NULL) {
+		+        printf("[System] Loi: Khong tim thay file accounts.txt!\n");
+		+        return 0;
+		+    }
+		+    char fileUser[64], filePass[64];
+		+    int role = 0;
+		+    /* Read lines: username password role */
+		+    while (fscanf(fp, "%63s %63s %d", fileUser, filePass, &role) == 3) {
+		+        if (strcmp(uname, fileUser) == 0 && strcmp(pword, filePass) == 0) {
+		+            fclose(fp);
+		+            return role;
+		+        }
+		+    }
+		+    fclose(fp);
+		+    return 0;
+		 }
+
+		*** End Patch for system.c ***
+
+		*** Begin Patch for data.h ***
+		--- a/data.h
+		+++ b/data.h
+		@@
+		 // Function prototypes cho Data I/O
+		 void loadData(void);
+		 void saveData(void);
+		 #endif
+
+		*** End Patch for data.h ***
+
+		*** Begin Patch for data.c ***
+		--- a/data.c
+		+++ b/data.c
+		@@
+		 void loadData(void){
+			 FILE *fp = fopen("NextFile.dat", "r");
+			 if (fp == NULL) {
+				 printf("[System] Khong tim thay file NextFile.dat. Bat dau voi 0 san pham.\n");
+				 productCount = 0;
+				 return;
+			 }
+
+			 productCount = 0;
+			 while (productCount < MAX_PRODUCTS) {
+				 char name[MAX_NAME];
+				 char comp[MAX_COMP];
+				 int price, id, qnt;
+				 int read = fscanf(fp, "%39s %39s %d %d %d\n", name, comp, &price, &id, &qnt);
+				 if (read != 5) break;
+				 strncpy(productList[productCount].productname, name, MAX_NAME-1);
+				 productList[productCount].productname[MAX_NAME-1] = '\0';
+				 strncpy(productList[productCount].productcomp, comp, MAX_COMP-1);
+				 productList[productCount].productcomp[MAX_COMP-1] = '\0';
+				 productList[productCount].price = price;
+				 productList[productCount].productid = id;
+				 productList[productCount].Qnt = qnt;
+				 productCount++;
+			 }
+
+			 fclose(fp);
+			 printf("[System] Da nap %d san pham tu file vao bo nho.\n", productCount);
+		 }
+
+		 /* Ensure a separate saveData implementation exists elsewhere in file: */
+		 void saveData(void){
+			 FILE *fp = fopen("NextFile.dat", "w");
+			 if (fp == NULL) {
+				 printf("[System]Loi: Khong the luu file NextFile.dat!\n");
+				 return;
+			 }
+			 for (int i = 0; i < productCount; i++){
+				 fprintf(fp, "%s %s %d %d %d\n",
+					 productList[i].productname,
+					 productList[i].productcomp,
+					 productList[i].price,
+					 productList[i].productid,
+					 productList[i].Qnt);
+			 }
+			 fclose(fp);
+			 printf("[System] Da luu %d san pham xuong file thanh cong.\n", productCount);
+		 }
+
+		*** End Patch for data.c ***
+
+		*** Begin Patch for declareFunction.h (new) ***
+		--- a/declareFunction.c
+		+++ b/declareFunction.h
+		@@
+		 #ifndef DECLARE_FUNCTION_H
+		 #define DECLARE_FUNCTION_H
+
+		 /* Prototypes for update/delete wrapper functions */
+		 void updateProduct(void);
+		 void deleteProduct(void);
+
+		 #endif /* DECLARE_FUNCTION_H */
+
+		*** End Patch for declareFunction.h ***
+
+		*** Begin Patch for product.h ***
+		--- a/product.h
+		+++ b/product.h
+		@@
+		 void add_item(void);
+		 void edit_item(void);
+		 void delete_product(void);
+		 void search_item(void);
+		 void read_item(void);
+		 void displayAllProduct(void);
+		 void searchProductByID(int id);
+		 void searchProductByName(const char* name);
+		 void sortProductsByPrice(int ascending);
+
+		 /* Note: standardize names across project (snake_case suggested). */
+
+		*** End Patch for product.h ***
+
+		---- End of proposed patches ----
+
