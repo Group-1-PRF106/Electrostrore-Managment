@@ -1,31 +1,33 @@
-#include "search.h"
+#include <stdio.h>
+#include <string.h>
+#include "search_function.h"
 
-void searchProductByName(const char *keyword) {
+void searchProductByName(Product arr[], int n, const char *keyword)
+{
     int found = 0;
 
-    printf("\nKET QUA TIM KIEM TU KHOA \"%s\"\n", keyword);
-    printf("\n%-5s %-30s %-20s %-15s %-10s\n", "ID", "TEN SAN PHAM", "HANG SAN XUAT", "GIA(VND)", "SO LUONG");
-    printf("------------------------------------------------------------------------------------\n");
+    // Cập nhật tiêu đề bảng: Thêm cột HANG và SO LUONG, căn lề cho phù hợp
+    printf("\n%-5s %-30s %-15s %-15s %-10s\n", "ID", "TEN SAN PHAM", "HANG", "GIA(VND)", "SO LUONG");
 
-    for(int i = 0; i < productCount; i++) {
-        // strstr tim chuoi con, neu khac NULL tuc la ten co chua keyword
-        if(strstr(productList[i].productname, keyword) != NULL) {
-            printf("%-5d %-30s %-20s %-15d %-10d\n",
-                   productList[i].productid,
-                   productList[i].productname,
-                   productList[i].productcomp,
-                   productList[i].price,
-                   productList[i].Qnt);
+    for(int i = 0; i < n; i++)
+    {
+        // strstr de tim chuoi con, phan biet hoa thuong
+        if(strstr(arr[i].productname, keyword) != NULL)
+        {
+            // In thêm mảng productcomp (Hãng) và biến Qnt (Số lượng)
+            printf("%-5d %-30s %-15s %-15d %-10d\n",
+                   arr[i].productid,
+                   arr[i].productname,
+                   arr[i].productcomp,
+                   arr[i].price,
+                   arr[i].Qnt);
+
             found = 1;
         }
     }
 
-    if(!found) {
-        printf("Khong tim thay san pham nao!\n");
+    if(!found)
+    {
+        printf("\nKhong tim thay san pham nao chua tu khoa: '%s'!\n", keyword);
     }
-    printf("------------------------------------------------------------------------------------\n");
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 8b2e0fc3a8ada0779f5970a2b6ec7c776c311b46

@@ -1,5 +1,5 @@
 [Project]
-filename=Managment.dev
+filename=Management.dev
 name=Electrostore Manager
 Type=1
 Ver=2
@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;1;0;0;0;32;0;0;0
-UnitCount=17
+UnitCount=26
 
 [VersionInfo]
 Major=1
@@ -121,7 +121,8 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit8]
-FileName=.gitignore
+FileName=addBundle().c
+CompileCpp=0
 Folder=
 Compile=1
 Link=1
@@ -130,17 +131,17 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit9]
-FileName=displayAllProduct().c
+FileName=addCustomer().c
+CompileCpp=0
 Folder=
 Compile=1
 Link=1
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
-CompileCpp=0
 
 [Unit10]
-FileName=displayAllProduct().h
+FileName=addItem().c
 CompileCpp=0
 Folder=
 Compile=1
@@ -150,7 +151,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit11]
-FileName=search.h
+FileName=addOrder().c
 CompileCpp=0
 Folder=
 Compile=1
@@ -160,7 +161,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit12]
-FileName=searchProductByID().c
+FileName=add_functions.h
 CompileCpp=0
 Folder=
 Compile=1
@@ -170,7 +171,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit13]
-FileName=searchProductByID().h
+FileName=update.h
 CompileCpp=0
 Folder=
 Compile=1
@@ -180,7 +181,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit14]
-FileName=searchProductByName().c
+FileName=update.c
 CompileCpp=0
 Folder=
 Compile=1
@@ -190,7 +191,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit15]
-FileName=searchProductByName().h
+FileName=updatename.c
 CompileCpp=0
 Folder=
 Compile=1
@@ -200,7 +201,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit16]
-FileName=sortProductsByPrice().c
+FileName=updatenamecheck.c
 CompileCpp=0
 Folder=
 Compile=1
@@ -210,7 +211,97 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit17]
-FileName=sortProductsByPrice().h
+FileName=updatebrand.c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit18]
+FileName=updatebrandcheck.c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit19]
+FileName=updateprice.c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit20]
+FileName=updatepricecheck.c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit21]
+FileName=updatequantity.c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit22]
+FileName=updatequantitycheck.c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit23]
+FileName=searchProductByID().c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit24]
+FileName=searchProductByName().c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit25]
+FileName=sortProductsByPrice().c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit26]
+FileName=displayAllProduct().c
 CompileCpp=0
 Folder=
 Compile=1

@@ -1,31 +1,37 @@
-#include "search.h"
+#include <stdio.h>
+#include "search_function.h"
 
-void sortProductsByPrice(int ascending) {
-    struct item temp; // Bien tam cung kieu struct item
+void sortProductsByPrice(Product arr[], int n, const char* filename)
+{
+    Product temp;
 
-    // Thuat toan Bubble Sort
-    for(int i = 0; i < productCount - 1; i++) {
-        for(int j = 0; j < productCount - i - 1; j++) {
-            
-            // Xac dinh dieu kien hoan vi dua tren bien ascending
-            int condition = ascending ? (productList[j].price > productList[j + 1].price) 
-                                      : (productList[j].price < productList[j + 1].price);
-            
-            if(condition) {
-                temp = productList[j];
-                productList[j] = productList[j + 1];
-                productList[j + 1] = temp;
+    for(int i = 0; i < n - 1; i++)
+    {
+        for(int j = 0; j < n - i - 1; j++)
+        {
+            if(arr[j].price > arr[j+1].price)
+            {
+                temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
             }
         }
     }
 
-    if(ascending) {
-        printf("\nDa sap xep danh sach san pham theo gia TANG DAN!\n");
-    } else {
-        printf("\nDa sap xep danh sach san pham theo gia GIAM DAN!\n");
+    printf("\nDa sap xep thanh cong!\n");
+
+    FILE *file = fopen(filename, "w");
+    if (file == NULL)
+    {
+        printf("\nLoi: Khong the mo file %s de luu du lieu!\n", filename);
+        return;
     }
-<<<<<<< HEAD
+
+    for(int i = 0; i < n; i++)
+    {
+        fprintf(file, "%d,%s,%d\n", arr[i].productid, arr[i].productname, arr[i].price);
+    }
+
+    // Chỉ đóng file, KHÔNG in thông báo gì thêm
+    fclose(file);
 }
-=======
-}
->>>>>>> 8b2e0fc3a8ada0779f5970a2b6ec7c776c311b46

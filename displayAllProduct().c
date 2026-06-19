@@ -1,50 +1,38 @@
-#include "search.h"
+#include <stdio.h>
+#include "search_function.h"
 
-void displayAllProduct(int showPrice) {
-    // Kiem tra neu mang rong
-    if (productCount == 0) {
-        printf("Danh sach san pham hien dang trong!\n");
-        return;
+void displayAllProduct(Product arr[], int n, int showPrice, const char* filename)
+{
+    FILE *file = fopen(filename, "w");
+    if (file == NULL)
+    {
+        printf("\nLoi: Khong the mo file %s de ghi!\n", filename);
+        return; 
     }
 
-    if(showPrice) {
-        printf("\n%-5s %-30s %-20s %-15s %-10s\n", "ID", "TEN SAN PHAM", "HANG SAN XUAT", "GIA(VND)", "SO LUONG");
-        printf("------------------------------------------------------------------------------------\n");
-        for(int i = 0; i < productCount; i++) {
-            printf("%-5d %-30s %-20s %-15d %-10d\n",
-                   productList[i].productid,
-                   productList[i].productname,
-                   productList[i].productcomp,
-                   productList[i].price,
-                   productList[i].Qnt);
-<<<<<<< HEAD
-        }
-    } else {
-        printf("\n%-5s %-30s %-20s %-10s\n", "ID", "TEN SAN PHAM", "HANG SAN XUAT", "SO LUONG");
-        printf("----------------------------------------------------------------------\n");
-        for(int i = 0; i < productCount; i++) {
-            printf("%-5d %-30s %-20s %-10d\n",
-                   productList[i].productid,
-                   productList[i].productname,
-                   productList[i].productcomp,
-                   productList[i].Qnt);
+    if(showPrice)
+    {
+        printf("\n%-5s %-35s %-15s\n", "ID", "TEN SAN PHAM", "GIA(VND)");
+        fprintf(file, "%-5s %-35s %-15s\n", "ID", "TEN SAN PHAM", "GIA(VND)");
+
+        for(int i = 0; i < n; i++)
+        {
+            printf("%-5d %-35s %-15d\n", arr[i].productid, arr[i].productname, arr[i].price);
+            fprintf(file, "%-5d %-35s %-15d\n", arr[i].productid, arr[i].productname, arr[i].price);
         }
     }
-    printf("------------------------------------------------------------------------------------\n");
-}
-=======
-        }
-    } else {
-        printf("\n%-5s %-30s %-20s %-10s\n", "ID", "TEN SAN PHAM", "HANG SAN XUAT", "SO LUONG");
-        printf("----------------------------------------------------------------------\n");
-        for(int i = 0; i < productCount; i++) {
-            printf("%-5d %-30s %-20s %-10d\n",
-                   productList[i].productid,
-                   productList[i].productname,
-                   productList[i].productcomp,
-                   productList[i].Qnt);
+    else
+    {
+        printf("\n%-5s %-35s\n", "ID", "TEN SAN PHAM");
+        fprintf(file, "%-5s %-35s\n", "ID", "TEN SAN PHAM");
+
+        for(int i = 0; i < n; i++)
+        {
+            printf("%-5d %-35s\n", arr[i].productid, arr[i].productname);
+            fprintf(file, "%-5d %-35s\n", arr[i].productid, arr[i].productname);
         }
     }
-    printf("------------------------------------------------------------------------------------\n");
+
+    // Chỉ đóng file, KHÔNG in thông báo gì thêm
+    fclose(file);
 }
->>>>>>> 8b2e0fc3a8ada0779f5970a2b6ec7c776c311b46

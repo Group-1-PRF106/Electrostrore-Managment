@@ -1,30 +1,32 @@
-#include "search.h"
+#include <stdio.h>
+#include "search_function.h"
 
-void searchProductByID(int searchID) {
+void searchProductByID(Product arr[], int n, int searchID)
+{
     int found = 0;
-    
-    printf("\nKET QUA TIM KIEM ID %d\n", searchID);
-    printf("--------------------------------------------------------------\n");
 
-    for(int i = 0; i < productCount; i++) {
-        if(productList[i].productid == searchID) {
-            printf("ID        : %d\n", productList[i].productid);
-            printf("Ten       : %s\n", productList[i].productname);
-            printf("Hang      : %s\n", productList[i].productcomp);
-            printf("Gia       : %d VND\n", productList[i].price);
-            printf("So luong  : %d\n", productList[i].Qnt);
+    for(int i = 0; i < n; i++)
+    {
+        if(arr[i].productid == searchID)
+        {
+            // 1. In tiêu đề cột giống hệt hàm tìm theo tên
+            printf("\n%-5s %-30s %-15s %-15s %-10s\n", "ID", "TEN SAN PHAM", "HANG", "GIA(VND)", "SO LUONG");
             
+            // 2. In dữ liệu của sản phẩm trên cùng một hàng ngang
+            printf("%-5d %-30s %-15s %-15d %-10d\n",
+                   arr[i].productid,
+                   arr[i].productname,
+                   arr[i].productcomp,
+                   arr[i].price,
+                   arr[i].Qnt);
+
             found = 1;
-            break; // Tim thay thi dung vong lap luon
+            break; // Tìm thấy ID là dừng luôn vì ID là duy nhất
         }
     }
 
-    if(!found) {
-        printf("Khong tim thay san pham co ID %d!\n", searchID);
+    if(!found)
+    {
+        printf("\nKhong tim thay san pham co ID: %d!\n", searchID);
     }
-    printf("--------------------------------------------------------------\n");
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 8b2e0fc3a8ada0779f5970a2b6ec7c776c311b46
