@@ -1,0 +1,3 @@
+ID    TEN SAN PHAM                        GIA(VND)       
+12884 Laptop_Del                          15000          
+12384 Camera_Canon                        10000000       
