@@ -4,8 +4,8 @@
 CPP      = g++.exe -D__DEBUG__
 CC       = gcc.exe -D__DEBUG__
 WINDRES  = windres.exe
-OBJ      = main.o product.o data.o system.o addBundle().o addCustomer().o addItem().o addOrder().o
-LINKOBJ  = main.o product.o data.o system.o addBundle().o addCustomer().o addItem().o addOrder().o
+OBJ      = main.o product.o data.o system.o addBundle().o addCustomer().o addItem().o addOrder().o update.o updatename.o updatenamecheck.o updatebrand.o updatebrandcheck.o updateprice.o updatepricecheck.o updatequantity.o updatequantitycheck.o
+LINKOBJ  = main.o product.o data.o system.o addBundle().o addCustomer().o addItem().o addOrder().o update.o updatename.o updatenamecheck.o updatebrand.o updatebrandcheck.o updateprice.o updatepricecheck.o updatequantity.o updatequantitycheck.o
 LIBS     = -L"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib" -L"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/lib" -static-libgcc -g3
 INCS     = -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include"
 CXXINCS  = -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include" -I"C:/Program Files (x86)/Embarcadero/Dev-Cpp/TDM-GCC-64/lib/gcc/x86_64-w64-mingw32/9.2.0/include/c++"
@@ -47,3 +47,30 @@ addItem().o: addItem().c
 
 addOrder().o: addOrder().c
 	$(CC) -c addOrder().c -o addOrder().o $(CFLAGS)
+
+update.o: update.c
+	$(CC) -c update.c -o update.o $(CFLAGS)
+
+updatename.o: updatename.c
+	$(CC) -c updatename.c -o updatename.o $(CFLAGS)
+
+updatenamecheck.o: updatenamecheck.c
+	$(CC) -c updatenamecheck.c -o updatenamecheck.o $(CFLAGS)
+
+updatebrand.o: updatebrand.c
+	$(CC) -c updatebrand.c -o updatebrand.o $(CFLAGS)
+
+updatebrandcheck.o: updatebrandcheck.c
+	$(CC) -c updatebrandcheck.c -o updatebrandcheck.o $(CFLAGS)
+
+updateprice.o: updateprice.c
+	$(CC) -c updateprice.c -o updateprice.o $(CFLAGS)
+
+updatepricecheck.o: updatepricecheck.c
+	$(CC) -c updatepricecheck.c -o updatepricecheck.o $(CFLAGS)
+
+updatequantity.o: updatequantity.c
+	$(CC) -c updatequantity.c -o updatequantity.o $(CFLAGS)
+
+updatequantitycheck.o: updatequantitycheck.c
+	$(CC) -c updatequantitycheck.c -o updatequantitycheck.o $(CFLAGS)
