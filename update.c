@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
-
+#include "search_function.h"
 typedef struct {
     int product_id;
 	char product_name[40];
