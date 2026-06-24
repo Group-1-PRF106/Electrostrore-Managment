@@ -1,38 +1,26 @@
 #include <stdio.h>
 #include "search_function.h"
+#include "product.h" // Để bốc mảng productList và biến productCount ra xài
 
-void displayAllProduct(Product arr[], int n, int showPrice, const char* filename)
+void displayAllProduct(void)
 {
-    FILE *file = fopen(filename, "w");
-    if (file == NULL)
-    {
-        printf("\nLoi: Khong the mo file %s de ghi!\n", filename);
+    
+    if (productCount == 0) {
+        printf("\n[!] Danh sach san pham \n");
         return; 
     }
 
-    if(showPrice)
+    printf("\n%-5s %-30s %-15s %-15s %-10s\n", "ID", "TEN SAN PHAM", "HANG", "GIA(VND)", "SO LUONG");
+    printf("-----------------------------------------------------------------------------------\n");
+
+    for(int i = 0; i < productCount; i++)
     {
-        printf("\n%-5s %-35s %-15s\n", "ID", "TEN SAN PHAM", "GIA(VND)");
-        fprintf(file, "%-5s %-35s %-15s\n", "ID", "TEN SAN PHAM", "GIA(VND)");
-
-        for(int i = 0; i < n; i++)
-        {
-            printf("%-5d %-35s %-15d\n", arr[i].productid, arr[i].productname, arr[i].price);
-            fprintf(file, "%-5d %-35s %-15d\n", arr[i].productid, arr[i].productname, arr[i].price);
-        }
+        printf("%-5d %-30s %-15s %-15d %-10d\n", 
+               productList[i].productid, 
+               productList[i].productname, 
+               productList[i].productcomp,
+               productList[i].price, 
+               productList[i].Qnt);
     }
-    else
-    {
-        printf("\n%-5s %-35s\n", "ID", "TEN SAN PHAM");
-        fprintf(file, "%-5s %-35s\n", "ID", "TEN SAN PHAM");
-
-        for(int i = 0; i < n; i++)
-        {
-            printf("%-5d %-35s\n", arr[i].productid, arr[i].productname);
-            fprintf(file, "%-5d %-35s\n", arr[i].productid, arr[i].productname);
-        }
-    }
-
-    // Chỉ đóng file, KHÔNG in thông báo gì thêm
-    fclose(file);
+    printf("-----------------------------------------------------------------------------------\n");
 }

@@ -8,7 +8,7 @@ typedef struct {
 	char product_brand[40];
 	float product_price;
 	int product_quantity;
-	} Product;//khai báo kiểu dữ liệu Product
+	} ProductUpdate;//khai báo kiểu dữ liệu Product
 
 void updateProduct(){
 	
@@ -16,7 +16,7 @@ void updateProduct(){
 	
 	bool editing = true;
 	do {
-		Product productChosen = searchItem(); //gán giá trị sản phẩm trả về
+		ProductUpdate productChosen = searchItem(); //gán giá trị sản phẩm trả về
 		if (memcmp(&productChosen, &empty_product, sizeof(Product)) == 0){
 			//so sánh bộ nhớ của struct trống và struct trả về từ searchItem
 			//nếu struct trả về rỗng => không tìm thấy

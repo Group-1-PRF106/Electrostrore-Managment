@@ -1,37 +1,33 @@
-#include <stdio.h>
+include <stdio.h>
 #include "search_function.h"
+#include "product.h" // Lấy productList và productCount
+#include "data.h"    // Để xài lệnh saveData()
 
-void sortProductsByPrice(Product arr[], int n, const char* filename)
+void sortProductsByPrice(void)
 {
-    Product temp;
+    if (productCount < 2) {
+        printf("\n[!] Kho co it hon 2 san pham, khong can sap xep!\n");
+        return;
+    }
 
-    for(int i = 0; i < n - 1; i++)
+    struct item temp;
+
+    // Sắp xếp nổi bọt mảng productList trên RAM theo giá tăng dần
+    for(int i = 0; i < productCount - 1; i++)
     {
-        for(int j = 0; j < n - i - 1; j++)
+        for(int j = 0; j < productCount - i - 1; j++)
         {
-            if(arr[j].price > arr[j+1].price)
+            if(productList[j].price > productList[j+1].price)
             {
-                temp = arr[j];
-                arr[j] = arr[j+1];
-                arr[j+1] = temp;
+                temp = productList[j];
+                productList[j] = productList[j+1];
+                productList[j+1] = temp;
             }
         }
     }
 
-    printf("\nDa sap xep thanh cong!\n");
+    printf("\n[Sap xep] Da sap xep thanh cong theo GIA TANG DAN!\n");
 
-    FILE *file = fopen(filename, "w");
-    if (file == NULL)
-    {
-        printf("\nLoi: Khong the mo file %s de luu du lieu!\n", filename);
-        return;
-    }
-
-    for(int i = 0; i < n; i++)
-    {
-        fprintf(file, "%d,%s,%d\n", arr[i].productid, arr[i].productname, arr[i].price);
-    }
-
-    // Chỉ đóng file, KHÔNG in thông báo gì thêm
-    fclose(file);
+    // Gọi saveData() để ghi mảng vừa sắp xếp xuống NextFile.dat theo ĐÚNG CHUẨN
+    saveData(); 
 }

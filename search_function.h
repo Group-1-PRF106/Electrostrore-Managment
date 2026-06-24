@@ -19,14 +19,14 @@ typedef struct item Product;
  * showPrice = 1: hiển thị giá
  * showPrice = 0: không hiển thị giá
  */
-Product searchItem(Product arr[], int n);
+Product searchItem(void);
 
 /*
  * Hiển thị toàn bộ danh sách sản phẩm
  * showPrice = 1: hiển thị giá
  * showPrice = 0: không hiển thị giá
  */
-void displayAllProduct(Product arr[], int n, int showPrice, const char* filename);
+void displayAllProduct(void);
 
 /*
  * Tìm kiếm sản phẩm theo ID
@@ -41,6 +41,6 @@ void searchProductByName(Product arr[], int n, const char *keyword);
 /*
  * Sắp xếp sản phẩm theo giá tăng dần
  */
-void sortProductsByPrice(Product arr[], int n, const char* filename);
+void sortProductsByPrice(void);
 
 #endif

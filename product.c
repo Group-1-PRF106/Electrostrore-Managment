@@ -50,7 +50,7 @@ void edit_item(void){
 }
 void search_item(void){
 }
-void displayAllProduct(v){
-}
+
+
 
 
