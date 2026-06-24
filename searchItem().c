@@ -1,81 +1,84 @@
-#include <stdio.h>
-#include <string.h>
+#include "product.h"
 #include "search_function.h"
+#include "data.h"
 
-// Đổi kiểu trả về từ void sang Product
-Product searchItem(Product arr[], int n) {
-    int choice;
-    int c;
-    Product empty_product = {0}; // Sản phẩm rỗng dùng để trả về khi hủy hoặc không tìm thấy
+// ====================================================================
+// HÀM 1: DÙNG CHO MENU CHÍNH (Tra cứu để XEM)
+// ====================================================================
+void search_item(void) {
+	int choice;
+	do {
+		printf("\n========== SEARCH MENU ==========\n");
+		printf("  1. Search Product by ID\n");
+		printf("  2. Search Product by Name\n");
+		printf("  0. Back to Main Menu\n");
+		printf("=================================\n");
+		printf("Enter your choice [0-2]: ");
+		
+		if (scanf("%d", &choice) != 1) {
+			while(getchar() != '\n'); // Dọn rác buffer nếu người dùng nhập chữ
+			choice = -1;
+		}
+
+		switch(choice) {
+			case 1: {
+				int id;
+				printf("\nEnter Product ID to search: ");
+				if (scanf("%d", &id) == 1) {
+					// Gọi hàm searchProductByID bên file searchProductByID().c
+					searchProductByID(productList, productCount, id); 
+				} else {
+					while(getchar() != '\n');
+					printf("\n[!] Invalid ID format!\n");
+				}
+				break;
+			}
+			case 2: {
+				char keyword[MAX_NAME];
+				printf("\nEnter keyword for Product Name: ");
+				
+				// Khắc phục lỗi trôi lệnh kinh điển của C khi dùng fgets liền sau scanf
+				while(getchar() != '\n'); 
+				
+				fgets(keyword, sizeof(keyword), stdin);
+				keyword[strcspn(keyword, "\n")] = '\0'; 
+
+				if (strlen(keyword) > 0) {
+					// Gọi hàm searchProductByName bên file searchProductByName().c
+					searchProductByName(productList, productCount, keyword);
+				} else {
+					printf("\n[!] Keyword cannot be empty!\n");
+				}
+				break;
+			}
+			case 0:
+				return; // Quay lại Menu Admin/User
+			default:
+				printf("\n[!] Invalid choice! Please select 0, 1, or 2.\n");
+		}
+	} while(1);
+}
+
+
+// ====================================================================
+// HÀM 2: DÙNG CHO HÀM UPDATE / DELETE (Tra cứu để TRẢ VỀ ĐỐI TƯỢNG)
+// ====================================================================
+struct item searchItem(void) {
+    struct item empty_item = {0}; // tạo 1 struct rỗng
+    int targetID;
+
+    printf("\n[System] Enter the Product ID you want to select: ");
+    if (scanf("%d", &targetID) != 1) {
+        while(getchar() != '\n');
+        return empty_item; //Nhập sai -> Trả về struct rỗng
+    }
+
     
-    do {
-        printf("\n================ TIM KIEM SAN PHAM ================\n");
-        printf("1. Tim kiem san pham theo ID\n");
-        printf("2. Tim kiem san pham theo Ten\n");
-        printf("0. Quay lai menu chinh\n");
-        printf("===================================================\n");
-        printf("Vui long nhap lua chon cua ban: ");
-        
-        if (scanf("%d", &choice) != 1) {
-            while((c = getchar()) != '\n' && c != EOF);
-            choice = -1;
-        } else {
-            while((c = getchar()) != '\n' && c != EOF);
+    for(int i = 0; i < productCount; i++) {
+        if(productList[i].productid == targetID) {
+            return productList[i]; // tìm thấy -> Trả về nguyên bản sao của struct đó
         }
+    }
 
-        switch(choice) {
-            case 1: {
-                int searchID;
-                printf("\nNhap ID san pham can tim: ");
-                scanf("%d", &searchID);
-                while((c = getchar()) != '\n' && c != EOF); 
-                
-                // TÌM KIẾM THEO ID VÀ TRẢ VỀ
-                for(int i = 0; i < n; i++) {
-                    if(arr[i].productid == searchID) {
-                        return arr[i]; // Tìm thấy, thoát hàm và trả về struct này luôn
-                    }
-                }
-                // Nếu chạy hết vòng lặp mà không thấy:
-                printf("\nKhong tim thay san pham co ID: %d!\n", searchID);
-                break;
-            }
-            case 2: {
-                char keyword[100];
-                printf("\nNhap ten san pham hoac tu khoa can tim: ");
-                fgets(keyword, sizeof(keyword), stdin);
-                keyword[strcspn(keyword, "\n")] = 0; 
-                
-                // Vẫn dùng hàm cũ để in ra màn hình danh sách các sản phẩm khớp tên
-                searchProductByName(arr, n, keyword);
-                
-                // THÊM BƯỚC: Yêu cầu người dùng chọn 1 ID từ danh sách vừa in ra
-                int selectID;
-                printf("\nNhap ID cua san pham ban muon CHON de cap nhat (hoac nhap 0 de huy): ");
-                if (scanf("%d", &selectID) != 1) selectID = 0;
-                while((c = getchar()) != '\n' && c != EOF);
-
-                if (selectID == 0) {
-                    break; // Quay lại menu tìm kiếm
-                }
-
-                // Tìm sản phẩm với ID vừa chọn và trả về
-                for(int i = 0; i < n; i++) {
-                    if(arr[i].productid == selectID) {
-                        return arr[i]; // Trả về struct được chọn
-                    }
-                }
-                printf("\nKhong tim thay san pham co ID: %d!\n", selectID);
-                break;
-            }
-            case 0:
-                printf("\nDang huy tim kiem...\n");
-                return empty_product; // Trả về struct rỗng nếu người dùng thoát
-                
-            default:
-                printf("\nLua chon khong hop le! Vui long nhap tu 0 den 2.\n");
-        }
-    } while(choice != 0);
-
-    return empty_product;
+    return empty_item; 
 }

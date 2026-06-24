@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "search_function.h"
+#include "product.h"
 
 void searchProductByID(Product arr[], int n, int searchID)
 {
@@ -9,10 +10,9 @@ void searchProductByID(Product arr[], int n, int searchID)
     {
         if(arr[i].productid == searchID)
         {
-            // 1. In tiêu đề cột giống hệt hàm tìm theo tên
             printf("\n%-5s %-30s %-15s %-15s %-10s\n", "ID", "TEN SAN PHAM", "HANG", "GIA(VND)", "SO LUONG");
+            printf("-----------------------------------------------------------------------------------\n");
             
-            // 2. In dữ liệu của sản phẩm trên cùng một hàng ngang
             printf("%-5d %-30s %-15s %-15d %-10d\n",
                    arr[i].productid,
                    arr[i].productname,
@@ -20,13 +20,13 @@ void searchProductByID(Product arr[], int n, int searchID)
                    arr[i].price,
                    arr[i].Qnt);
 
+            printf("-----------------------------------------------------------------------------------\n");
             found = 1;
-            break; // Tìm thấy ID là dừng luôn vì ID là duy nhất
+            break; 
         }
     }
 
-    if(!found)
-    {
-        printf("\nKhong tim thay san pham co ID: %d!\n", searchID);
+    if(!found) {
+        printf("\n[!] Khong tim thay san pham co ID: %d!\n", searchID);
     }
 }
