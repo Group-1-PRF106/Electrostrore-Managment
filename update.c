@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include "search_function.h"
+#include "update.h"
 typedef struct {
     int product_id;
 	char product_name[40];
@@ -12,12 +13,12 @@ typedef struct {
 
 void updateProduct(){
 	
-	Product empty_product = {0};//khai báo giá trị so sánh trường hợp k tìm thấy s.phẩm
+	ProductUpdate empty_product = {0};//khai báo giá trị so sánh trường hợp k tìm thấy s.phẩm
 	
 	bool editing = true;
 	do {
 		ProductUpdate productChosen = searchItem(); //gán giá trị sản phẩm trả về
-		if (memcmp(&productChosen, &empty_product, sizeof(Product)) == 0){
+		if (memcmp(&productChosen, &empty_product, sizeof(ProductUpdate)) == 0){
 			//so sánh bộ nhớ của struct trống và struct trả về từ searchItem
 			//nếu struct trả về rỗng => không tìm thấy
 			printf("Product not found!");
@@ -49,7 +50,7 @@ void updateProduct(){
             FILE *fileNew = fopen("temp.txt", "w");
             
             if (fileOld != NULL && fileNew != NULL) {
-                Product currentProd;
+                ProductUpdate currentProd;
                 int isUpdated = 0; // Biến cờ đánh dấu đã tìm thấy để ghi đè chưa
                 
                 // Đọc từng dòng từ file gốc theo đúng định dạng dữ liệu (%d cho ID)

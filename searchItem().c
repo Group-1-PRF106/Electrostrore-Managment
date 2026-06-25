@@ -1,84 +1,86 @@
+#include <stdio.h>
+#include <string.h>
 #include "product.h"
 #include "search_function.h"
-#include "data.h"
-
-// ====================================================================
-// HÀM 1: DÙNG CHO MENU CHÍNH (Tra cứu để XEM)
-// ====================================================================
-void search_item(void) {
-	int choice;
-	do {
-		printf("\n========== SEARCH MENU ==========\n");
-		printf("  1. Search Product by ID\n");
-		printf("  2. Search Product by Name\n");
-		printf("  0. Back to Main Menu\n");
-		printf("=================================\n");
-		printf("Enter your choice [0-2]: ");
-		
-		if (scanf("%d", &choice) != 1) {
-			while(getchar() != '\n'); // Dọn rác buffer nếu người dùng nhập chữ
-			choice = -1;
-		}
-
-		switch(choice) {
-			case 1: {
-				int id;
-				printf("\nEnter Product ID to search: ");
-				if (scanf("%d", &id) == 1) {
-					// Gọi hàm searchProductByID bên file searchProductByID().c
-					searchProductByID(productList, productCount, id); 
-				} else {
-					while(getchar() != '\n');
-					printf("\n[!] Invalid ID format!\n");
-				}
-				break;
-			}
-			case 2: {
-				char keyword[MAX_NAME];
-				printf("\nEnter keyword for Product Name: ");
-				
-				// Khắc phục lỗi trôi lệnh kinh điển của C khi dùng fgets liền sau scanf
-				while(getchar() != '\n'); 
-				
-				fgets(keyword, sizeof(keyword), stdin);
-				keyword[strcspn(keyword, "\n")] = '\0'; 
-
-				if (strlen(keyword) > 0) {
-					// Gọi hàm searchProductByName bên file searchProductByName().c
-					searchProductByName(productList, productCount, keyword);
-				} else {
-					printf("\n[!] Keyword cannot be empty!\n");
-				}
-				break;
-			}
-			case 0:
-				return; // Quay lại Menu Admin/User
-			default:
-				printf("\n[!] Invalid choice! Please select 0, 1, or 2.\n");
-		}
-	} while(1);
-}
-
-
-// ====================================================================
-// HÀM 2: DÙNG CHO HÀM UPDATE / DELETE (Tra cứu để TRẢ VỀ ĐỐI TƯỢNG)
-// ====================================================================
-struct item searchItem(void) {
-    struct item empty_item = {0}; // tạo 1 struct rỗng
-    int targetID;
-
-    printf("\n[System] Enter the Product ID you want to select: ");
-    if (scanf("%d", &targetID) != 1) {
-        while(getchar() != '\n');
-        return empty_item; //Nhập sai -> Trả về struct rỗng
-    }
-
-    
-    for(int i = 0; i < productCount; i++) {
-        if(productList[i].productid == targetID) {
-            return productList[i]; // tìm thấy -> Trả về nguyên bản sao của struct đó
+ 
+/*
+ * searchItem()
+ * - Menu trung gian cho update.c và delete.c gọi
+ * - Cho người dùng chọn: tìm theo ID hoặc theo Tên
+ * - Trả về: struct item tìm thấy, hoặc {0} nếu hủy / không tìm thấy
+ */
+struct item searchItem(void)
+{
+    struct item empty = {0};
+    int choice;
+ 
+    do {
+        printf("\n========== CHON SAN PHAM DE XU LY ==========\n");
+        printf("  1. Tim theo ID\n");
+        printf("  2. Tim theo Ten\n");
+        printf("  0. Huy / Quay lai\n");
+        printf("=============================================\n");
+        printf("Nhap lua chon [0-2]: ");
+ 
+        if (scanf("%d", &choice) != 1)
+        {
+            while (getchar() != '\n');
+            choice = -1;
         }
-    }
-
-    return empty_item; 
+ 
+        switch (choice)
+        {
+            case 1: {
+                int targetID;
+                printf("\nNhap Product ID can tim: ");
+                if (scanf("%d", &targetID) != 1)
+                {
+                    while (getchar() != '\n');
+                    printf("[!] ID khong hop le!\n");
+                    break;
+                }
+ 
+                struct item result = searchProductByID(productList, productCount, targetID);
+ 
+                // Kiem tra co tim thay khong (productid == 0 la struct rong)
+                if (result.productid != 0)
+                {
+                    return result; // TRA VE CHO UPDATE / DELETE
+                }
+                // Neu khong tim thay, searchProductByID da in thong bao, tiep tuc vong lap
+                break;
+            }
+ 
+            case 2: {
+                char keyword[MAX_NAME];
+                printf("\nNhap tu khoa ten san pham: ");
+                while (getchar() != '\n');
+                if (fgets(keyword, sizeof(keyword), stdin) == NULL)
+                    break;
+                keyword[strcspn(keyword, "\n")] = '\0';
+ 
+                if (strlen(keyword) == 0)
+                {
+                    printf("[!] Tu khoa khong duoc de trong!\n");
+                    break;
+                }
+ 
+                struct item result = searchProductByName(productList, productCount, keyword);
+ 
+                if (result.productid != 0)
+                {
+                    return result; // TRA VE CHO UPDATE / DELETE
+                }
+                break;
+            }
+ 
+            case 0:
+                printf("Da huy tim kiem.\n");
+                return empty;
+ 
+            default:
+                printf("[!] Lua chon khong hop le!\n");
+        }
+ 
+    } while (1);
 }
