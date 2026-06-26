@@ -1,4 +1,4 @@
-include <stdio.h>
+#include <stdio.h>
 #include "search_function.h"
 #include "product.h" // Lấy productList và productCount
 #include "data.h"    // Để xài lệnh saveData()
