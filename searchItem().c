@@ -15,7 +15,7 @@ struct item searchItem(void)
     int choice;
  
     do {
-        printf("\n========== CHON SAN PHAM DE XU LY ==========\n");
+        printf("\n========== CHON SAN PHAM ==========\n");
         printf("  1. Tim theo ID\n");
         printf("  2. Tim theo Ten\n");
         printf("  0. Huy / Quay lai\n");
