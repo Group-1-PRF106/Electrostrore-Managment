@@ -2,13 +2,7 @@
 #include <stdbool.h>
 #include <string.h>
 
-typedef struct {
-    int product_id;
-	char product_name[40];
-	char product_brand[40];
-	float product_price;
-	int product_quantity;
-	} Product;//khai báo kiểu dữ liệu Product
+#include "search_function.h"
 
 void deleteProduct(){
     Product empty_product = {0}; // Khai báo giá trị so sánh trường hợp không tìm thấy sản phẩm
@@ -25,11 +19,11 @@ void deleteProduct(){
         } else {
             // Hiển thị thông tin sản phẩm trước khi xác nhận xóa
             printf("\n--- PRODUCT TO DELETE ---");
-            printf("\nProduct ID: %d", productChosen.product_id);
-            printf("\nProduct name: %s", productChosen.product_name);
-            printf("\nProduct brand: %s", productChosen.product_brand);
-            printf("\nProduct price: %.2f", productChosen.product_price);
-            printf("\nProduct quantity: %d\n", productChosen.product_quantity);
+            printf("\nProduct ID: %d", productChosen.productid);
+            printf("\nProduct name: %s", productChosen.productname);
+            printf("\nProduct brand: %s", productChosen.productcomp);
+            printf("\nProduct price: %d", productChosen.price);
+            printf("\nProduct quantity: %d\n", productChosen.Qnt);
             
             // Hỏi xác nhận xóa từ người dùng
             printf("Are you sure you want to delete this product? Y/N: ");
@@ -48,15 +42,15 @@ void deleteProduct(){
                     int isDeleted = 0; // Biến cờ đánh dấu đã tìm thấy để xóa (bỏ qua không ghi) chưa
                     
                     // Đọc từng dòng từ file gốc theo đúng định dạng dữ liệu
-                    while (fscanf(fileOld, "%d %s %s %f %d\n", &currentProd.product_id, currentProd.product_name, currentProd.product_brand, &currentProd.product_price, &currentProd.product_quantity) != EOF) {
+                    while (fscanf(fileOld, "%39s %39s %d %d %d\n", currentProd.productname, currentProd.productcomp, &currentProd.price, &currentProd.productid, &currentProd.Qnt) != EOF) {
                         
                         // So sánh ID kiểu số nguyên
-                        if (currentProd.product_id == productChosen.product_id) {
+                        if (currentProd.productid == productChosen.productid) {
                             // TRÙNG ID -> Bỏ qua không ghi vào file tạm (hành động xóa)
                             isDeleted = 1; 
                         } else {
                             // KHÔNG TRÙNG -> Ghi NGUYÊN XI dữ liệu cũ sang file tạm
-                            fprintf(fileNew, "%d %s %s %.2f %d\n", currentProd.product_id, currentProd.product_name, currentProd.product_brand, currentProd.product_price, currentProd.product_quantity);
+                            fprintf(fileNew, "%s %s %d %d %d\n", currentProd.productname, currentProd.productcomp, currentProd.price, currentProd.productid, currentProd.Qnt);
                         }
                     }
                     

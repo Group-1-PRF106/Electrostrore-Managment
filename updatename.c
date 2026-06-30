@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-int checkValidProductName(char name[]);
+#include "update.h"
+
 
 void updateProductName(char name[40]){
 	char temp[40];

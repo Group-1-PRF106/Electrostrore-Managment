@@ -4,15 +4,15 @@
 void updateProduct();
 
 void updateProductName(char name[40]);
-int checkValidProductName();
+int checkValidProductName(const char *temp);
 
 void updateProductBrand(char name[40]);
-int checkValidProductBrand();
+int checkValidProductBrand(const char *temp);
 
-void updateProductPrice();
-int checkValidProductPrice();
+void updateProductPrice(int *price);
+int checkValidProductPrice(int price);
 
-void updateProductQuantity();
-int checkValidProductQuantity();
+void updateProductQuantity(int *quantity);
+int checkValidProductQuantity(int quantity);
 
 #endif

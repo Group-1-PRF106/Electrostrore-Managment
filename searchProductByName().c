@@ -18,7 +18,7 @@ struct item searchProductByName(struct item arr[], int n, const char *keyword)
     // Tìm và in danh sách khớp từ khóa
     for (int i = 0; i < n; i++)
     {
-        if (strstr(arr[i].product_name, keyword) != NULL)
+        if (strstr(arr[i].productname, keyword) != NULL)
         {
             if (matchCount == 0)
             {
@@ -28,10 +28,10 @@ struct item searchProductByName(struct item arr[], int n, const char *keyword)
             }
             printf("%-5d %-30s %-15s %-15d %-10d\n",
                    matchCount + 1,          // So thu tu (1, 2, 3...)
-                   arr[i].product_name,
-                   arr[i].product_brand,
-                   arr[i].product_price,
-                   arr[i].product_quantity);
+                   arr[i].productname,
+                   arr[i].productcomp,
+                   arr[i].price,
+                   arr[i].Qnt);
             matchIndex[matchCount] = i;     // Luu vi tri trong mang goc
             matchCount++;
         }

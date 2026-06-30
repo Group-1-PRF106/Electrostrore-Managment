@@ -1,12 +1,14 @@
 #include <stdio.h>
 
-void updateProductPrice(float *price){
-	float temp;
+#include "update.h"
+
+void updateProductPrice(int *price){
+	int temp;
 	int reprice_loops = 1;
 	do {
 		//nhập giá
 		printf("Please enter the new price you want to update: ");
-		scanf("%f", &temp);
+		scanf("%d", &temp);
 
 		//kiểm tra giá hợp lệ (0=invalid; 1=valid)
 		if (checkValidProductPrice(temp)==1){

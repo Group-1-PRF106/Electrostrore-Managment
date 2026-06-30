@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-int checkValidProductBrand(char brand[]);
+#include "update.h"
+
 
 void updateProductBrand(char brand[40]){
 	char temp[40];

@@ -1,5 +1,6 @@
 #include "system.h"
 #include "data.h"
+#include "search_function.h"
 #include <conio.h>
 #include <windows.h>
 #include <time.h>

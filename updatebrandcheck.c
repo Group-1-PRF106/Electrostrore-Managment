@@ -6,7 +6,7 @@
 
 // Hàm kiểm tra tính hợp lệ của tên sản phẩm
 // Trả về 1 nếu hợp lệ (chỉ chứa chữ cái, số, và khoảng trắng), trả về 0 nếu không hợp lệ
-int checkValidProductName(const char *temp) {
+int checkValidProductBrand(const char *temp) {
     // Trường hợp chuỗi rỗng hoặc con trỏ NULL
     if (temp == NULL || strlen(temp) == 0) {
         return 0; 
